@@ -4,8 +4,7 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 
-#define SSID "Vodafone-69BF"
-#define PWD "HLGHNHgLnTQGgccN"
+#include "include/private.h"
 
 // Device can be found on the network using this name
 #define NAME "Puzzle_3"
