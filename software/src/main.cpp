@@ -1,4 +1,4 @@
-/*#include <Arduino.h>
+#include <Arduino.h>
 
 #include <NTPClient.h>
 #include <WiFi.h>
@@ -9,59 +9,6 @@
 // Device can be found on the network using this name
 #define NAME "Puzzle_3"
 
-WiFiUDP ntpUDP;
-
-// By default 'pool.ntp.org' is used with 60 seconds update interval and
-// no offset
-NTPClient timeClient(ntpUDP);
-
-
-void setup() {
-        Serial.begin(9600);
-  // put your setup code here, to run once:
-  Serial.print("Connecting to ");
-    Serial.println(SSID);
-    // Set name passed to AP while connection
-    WiFi.setHostname(NAME);
-    // Connect to AP
-    WiFi.begin(SSID, PWD);
-    // Wait while not connected
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        delay(500);
-        Serial.print(".");
-    }
-    // Print IP
-    Serial.println("\nWiFi connected.\nIP Adress: ");
-    Serial.println(WiFi.localIP());
-
-     timeClient.begin();
-
-
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-  timeClient.update();
-
-  Serial.println(timeClient.getFormattedTime());
-
-  delay(1000);
-}*/
-#include <Arduino.h>
-// Include the library:
-#include <TM1637Display.h>
-#include "RTClib.h"
-
-#include <NTPClient.h>
-#include <WiFi.h>
-#include <WiFiUdp.h>
-
-// Device can be found on the network using this name
-#define NAME "Puzzle_3"
-
-#define SSID "Vodafone-69BF"
-#define PWD "HLGHNHgLnTQGgccN"
 
 WiFiUDP ntpUDP;
 
