@@ -1,10 +1,19 @@
+//#define ESP32 0
+
+
+
 #include <Arduino.h>
 // Include the library:
 #include <TM1637Display.h>
 #include "RTClib.h"
 
 #include <NTPClient.h>
-#include <WiFi.h>
+
+#ifdef ESP32
+    #include <WiFi.h>
+#else
+    #include <ESP8266WiFi.h>
+#endif
 #include <WiFiUdp.h>
 
 #include <RotaryEncoder.h>
@@ -15,22 +24,29 @@
 #define NAME "Puzzle_3"
 
 
-
 WiFiUDP ntpUDP;
 
 // By default 'pool.ntp.org' is used with 60 seconds update interval and
 // no offset
 NTPClient timeClient(ntpUDP);
 
-RTC_DS3231 rtc;
+
 // Define the connections pins:
-#define CLK_DIG 33
-#define DIO_DIG 32
+#define CLK_DIG D5
+#define DIO_DIG D6
 
-#define TOUCH_PIN 17
+#ifdef ESP32
+    #define TOUCH_PIN 17
+#else
+    #define TOUCH_PIN D7
+#endif
 
+
+RTC_DS3231 rtc;
 // the pin that is connected to SQW
-#define CLOCK_INTERRUPT_PIN 16
+#define CLOCK_INTERRUPT_PIN D0
+#define CLOCK_SCL D1
+#define CLOCK_SDA D2
 
 #define PIN_A   18 //ky-040 clk pin, add 100nF/0.1uF capacitors between pin & ground!!!
 #define PIN_B   19 //ky-040 dt  pin, add 100nF/0.1uF capacitors between pin & ground!!!
@@ -38,10 +54,10 @@ RTC_DS3231 rtc;
 
 int16_t position = 0;
 
-RotaryEncoder encoder(PIN_A, PIN_B, BUTTON);
+//RotaryEncoder encoder(PIN_A, PIN_B, BUTTON);
 
 bool rotated = false;
-
+/*
 void encoderISR()
 {
     encoder.readAB();
@@ -57,7 +73,7 @@ void encoderButtonISR()
     {
         pushed = true; 
     }
-}
+}*/
 
 int numCounter = 0;
 
@@ -103,6 +119,8 @@ void IRAM_ATTR isr() {
     {
         touched = true; 
     }
+
+    Serial.print("HIGH");
   
 }
 
@@ -113,27 +131,35 @@ void IRAM_ATTR onAlarm() {
 
 void setup()
 {
+
+    Serial.begin(115200);
+    delay(1000);
+
+
     display.setBrightness(0x0a); //set the diplay to maximum brightness
     pinMode(TOUCH_PIN, INPUT_PULLUP);
     attachInterrupt(TOUCH_PIN, isr, FALLING);
-
+/*
     encoder.begin();                                                           //set encoders pins as input & enable built-in pullup resistors
 
     attachInterrupt(digitalPinToInterrupt(PIN_A),  encoderISR,       CHANGE);  //call encoderISR()    every high->low or low->high changes
     attachInterrupt(digitalPinToInterrupt(BUTTON), encoderButtonISR, FALLING); //call pushButtonISR() every high->low              changes
-
-    Serial.begin(9600);
+*/
 
 
     // Making it so, that the alarm will trigger an interrupt
     pinMode(CLOCK_INTERRUPT_PIN, INPUT_PULLUP);
+    pinMode(CLOCK_SCL, INPUT_PULLUP);
+    pinMode(CLOCK_SDA, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(CLOCK_INTERRUPT_PIN), onAlarm, FALLING);
 
+    Wire.begin(CLOCK_SDA, CLOCK_SCL);
     
     if (! rtc.begin()) {
     Serial.println("Couldn't find RTC");
     while (1);
     }
+
 
     Serial.print("Connecting to ");
     Serial.println(SSID);
@@ -213,7 +239,7 @@ void setup()
  bool switch_state = false;
 
 void loop()
-{
+{/*
     switch(clc_state)
     {
         case SHOW_TIME:
@@ -426,7 +452,7 @@ void loop()
             alarm_state = ALARM_OFF;
             pushed = false;
         }
-    }
+    }*/
 /*
     // the value at SQW-Pin (because of pullup 1 means no alarm)
     Serial.print(" SQW: ");
@@ -444,5 +470,8 @@ void loop()
     }*/
 
         //Serial.println(timeClient.getFormattedTime())
+
+    delay(1000);
+    Serial.println("loop");
     
 }
