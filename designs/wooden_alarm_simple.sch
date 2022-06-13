@@ -8601,11 +8601,6 @@ W = angled&lt;p&gt;
 <label x="78.74" y="-15.24" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JUMPER_CLK" gate="1" pin="2"/>
-<wire x1="33.02" y1="38.1" x2="34.29" y2="38.1" width="0.1524" layer="91"/>
-<label x="34.29" y="38.1" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="189.23" y1="35.56" x2="198.12" y2="35.56" width="0.1524" layer="91"/>
 <label x="198.12" y="35.56" size="1.778" layer="95"/>
@@ -8619,6 +8614,11 @@ W = angled&lt;p&gt;
 <pinref part="VCC" gate="G$1" pin="3"/>
 <wire x1="119.38" y1="-10.16" x2="119.38" y2="-7.62" width="0.1524" layer="91"/>
 <label x="119.38" y="-7.62" size="1.778" layer="95" rot="R90"/>
+</segment>
+<segment>
+<pinref part="JUMPER_CLK" gate="1" pin="1"/>
+<wire x1="33.02" y1="35.56" x2="34.29" y2="35.56" width="0.1524" layer="91"/>
+<label x="33.02" y="35.56" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -8650,11 +8650,6 @@ W = angled&lt;p&gt;
 <label x="78.74" y="-17.78" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JUMPER_CLK" gate="1" pin="1"/>
-<wire x1="33.02" y1="35.56" x2="34.29" y2="35.56" width="0.1524" layer="91"/>
-<label x="34.29" y="35.56" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="IO_0_SWITCH" gate="G$1" pin="3"/>
 <wire x1="210.82" y1="15.24" x2="210.82" y2="22.86" width="0.1524" layer="91"/>
 <label x="208.28" y="22.86" size="1.778" layer="95"/>
@@ -8668,6 +8663,11 @@ W = angled&lt;p&gt;
 <pinref part="VCC" gate="G$1" pin="2"/>
 <wire x1="121.92" y1="-10.16" x2="121.92" y2="-7.62" width="0.1524" layer="91"/>
 <label x="121.92" y="-7.62" size="1.778" layer="95" rot="R90"/>
+</segment>
+<segment>
+<pinref part="JUMPER_CLK" gate="1" pin="2"/>
+<wire x1="33.02" y1="38.1" x2="34.29" y2="38.1" width="0.1524" layer="91"/>
+<label x="33.02" y="38.1" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RX" class="0">
