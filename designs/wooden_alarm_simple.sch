@@ -8616,9 +8616,9 @@ W = angled&lt;p&gt;
 <label x="119.38" y="-7.62" size="1.778" layer="95" rot="R90"/>
 </segment>
 <segment>
-<pinref part="JUMPER_CLK" gate="1" pin="1"/>
-<wire x1="33.02" y1="35.56" x2="34.29" y2="35.56" width="0.1524" layer="91"/>
-<label x="33.02" y="35.56" size="1.778" layer="95"/>
+<pinref part="JUMPER_CLK" gate="1" pin="2"/>
+<wire x1="33.02" y1="38.1" x2="34.29" y2="38.1" width="0.1524" layer="91"/>
+<label x="33.02" y="38.1" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -8663,11 +8663,14 @@ W = angled&lt;p&gt;
 <pinref part="VCC" gate="G$1" pin="2"/>
 <wire x1="121.92" y1="-10.16" x2="121.92" y2="-7.62" width="0.1524" layer="91"/>
 <label x="121.92" y="-7.62" size="1.778" layer="95" rot="R90"/>
+<pinref part="VCC" gate="G$1" pin="1"/>
+<wire x1="124.46" y1="-10.16" x2="121.92" y2="-10.16" width="0.1524" layer="91"/>
+<junction x="121.92" y="-10.16"/>
 </segment>
 <segment>
-<pinref part="JUMPER_CLK" gate="1" pin="2"/>
-<wire x1="33.02" y1="38.1" x2="34.29" y2="38.1" width="0.1524" layer="91"/>
-<label x="33.02" y="38.1" size="1.778" layer="95"/>
+<pinref part="JUMPER_CLK" gate="1" pin="1"/>
+<wire x1="33.02" y1="35.56" x2="34.29" y2="35.56" width="0.1524" layer="91"/>
+<label x="33.02" y="35.56" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RX" class="0">
