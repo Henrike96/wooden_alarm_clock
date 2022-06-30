@@ -323,6 +323,7 @@ void loop()
             display.setBrightness(7, 1);
             timeNow = rtc.now();
             cur_min = timeNow.minute();
+            cur_hour = timeNow.hour();
             if(cur_min < 10)
                 display.showNumberDecEx(cur_min, 0b01000000, true, 2U, 2);
             else
