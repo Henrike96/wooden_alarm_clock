@@ -42,32 +42,27 @@ NTPClient timeClient(ntpUDP, "europe.pool.ntp.org");
 
 
 // Define the connections pins:
-#define CLK_DIG 14
+#define CLK_DIG 16
 #define DIO_DIG 12
 
-#define TOUCH_PIN 0
+#define TOUCH_PIN 14
 
 
 TM1637Display display(CLK_DIG, DIO_DIG);
 
 RTC_DS3231 rtc;
 // the pin that is connected to SQW
-//#define CLOCK_INTERRUPT_PIN 13
 #define CLOCK_SCL 5
 #define CLOCK_SDA 4
 
 bool rotated = false;
 
-
 int numCounter = 0;
 
 uint8_t cur_min, cur_hour;
-
 uint8_t seconds;
-
 uint8_t alarm_hour; 
 uint8_t alarm_min;
-
 
 enum cause{
     nocause = 0,
@@ -357,7 +352,7 @@ void loop()
             }
             attachInterrupt(digitalPinToInterrupt(TOUCH_PIN), isr, ONHIGH);
             //attachInterrupt(digitalPinToInterrupt(CLOCK_INTERRUPT_PIN), at2oclock, ONLOW);
-            delay(3000);
+            delay(5000);
             // turn off display
             display.setBrightness(0, 0);
             display.showNumberDecEx(cur_min, 0b01000000, true, 2U, 2);
